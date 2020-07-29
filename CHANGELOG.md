@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Pre Release - Android Mobile Checkout integration added.

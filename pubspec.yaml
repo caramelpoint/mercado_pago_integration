@@ -1,8 +1,7 @@
 name: mercado_pago_integration
 description: A new flutter plugin project.
 version: 0.0.1
-author:
-homepage:
+repository: https://github.com/caramelpoint/mercado_pago_integration
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
