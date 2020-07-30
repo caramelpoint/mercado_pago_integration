@@ -1,7 +1,9 @@
 name: mercado_pago_integration
-description: A new flutter plugin project.
+description: >-
+  MercadoPago Mobile Checkout Integration for android and ios
+
+homepage: https://github.com/caramelpoint/mercado_pago_integration
 version: 0.0.1
-repository: https://github.com/caramelpoint/mercado_pago_integration
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
