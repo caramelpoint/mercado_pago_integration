@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 MercadoPago Mobile Checkout Integration
                        DESC
   s.homepage         = 'https://github.com/caramelpoint/mercado_pago_integration'
-  s.license          = { :type => 'MIT', :file => '../LICENSE.md' }
+  s.license          = { :type => 'MIT', :file => '../LICENSE' }
   s.author           = { 'Caramel Point' => 'caramelpointdev@gmail.com' }
   s.source           = { :http => 'https://github.com/caramelpoint/mercado_pago_integration/tree/master/ios' }
   s.documentation_url = 'https://pub.dev/packages/mercado_pago_integration'
