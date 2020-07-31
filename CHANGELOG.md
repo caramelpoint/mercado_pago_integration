@@ -1,16 +1,18 @@
 # Mercado Pago Integration versions
 
-## v0.0.1
+## v0.0.5
 
-🚀 Pre Release - 0.0.1 🚀
+🚀 Pre Release - 0.0.4 🚀
 
-- Android Mobile Checkout integration added.
+- Integrated mercado_pago_sdk
+- Create the checkout preference id.
 
-## v0.0.2
+## v0.0.4
 
-🚀 Pre Release - 0.0.2 🚀
+🚀 Pre Release - 0.0.4 🚀
 
-- Ios Mobile Checkout integration added.
+- Integrated mercado_pago_sdk
+- Create the checkout preference id.
 
 ## v0.0.3
 
@@ -19,9 +21,14 @@
 - Documentation updated
 - Test Fixed
 
-## v0.0.4
+## v0.0.2
 
-🚀 Pre Release - 0.0.4 🚀
+🚀 Pre Release - 0.0.2 🚀
 
-- Integrated mercado_pago_sdk
-- Create the checkout preference id.
+- Ios Mobile Checkout integration added.
+
+## v0.0.1
+
+🚀 Pre Release - 0.0.1 🚀
+
+- Android Mobile Checkout integration added.
