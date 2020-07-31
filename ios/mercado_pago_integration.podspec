@@ -5,19 +5,22 @@
 Pod::Spec.new do |s|
   s.name             = 'mercado_pago_integration'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'MercadoPago Mobile Checkout Integration.'
   s.description      = <<-DESC
-A new flutter plugin project.
+MercadoPago Mobile Checkout Integration
                        DESC
-  s.homepage         = 'http://example.com'
-  s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
-  s.source           = { :path => '.' }
+  s.homepage         = 'https://github.com/caramelpoint/mercado_pago_integration'
+  s.license          = { :type => 'MIT', :file => '../LICENSE.md' }
+  s.author           = { 'Caramel Point' => 'caramelpointdev@gmail.com' }
+  s.source           = { :http => 'https://github.com/caramelpoint/mercado_pago_integration/tree/master/ios' }
+  s.documentation_url = 'https://pub.dev/packages/mercado_pago_integration'
   s.source_files = 'Classes/**/*'
+  s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
-
-  # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
+  s.dependency 'MercadoPagoSDK', '~>4.32.4'
+  s.static_framework = true
+  s.platform = :ios, '10.0'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
-  s.swift_version = '5.0'
+
 end
+
