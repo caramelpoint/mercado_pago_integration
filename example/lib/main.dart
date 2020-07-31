@@ -26,9 +26,11 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: RaisedButton(
             onPressed: () async {
-              String platformVersion = await MercadoPagoIntegration.startCheckout(
-                  publicKey: "TEST-6e834519-997d-4a19-893e-30b6640ac335",
-                  checkoutPreferenceId: "582487861-d0e6d475-4b97-4ed8-a629-a5d2529ea46f");
+              String platformVersion =
+                  await MercadoPagoIntegration.startCheckout(
+                      publicKey: "TEST-6e834519-997d-4a19-893e-30b6640ac335",
+                      checkoutPreferenceId:
+                          "582487861-d0e6d475-4b97-4ed8-a629-a5d2529ea46f");
               debugPrint('RESULTADO$platformVersion');
             },
             child: Text('Test Integration'),

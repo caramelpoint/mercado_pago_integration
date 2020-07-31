@@ -18,6 +18,9 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await MercadoPagoIntegration.startCheckout(publicKey: "", checkoutPreferenceId: ""), 'Starting');
+    expect(
+        await MercadoPagoIntegration.startCheckout(
+            publicKey: "", checkoutPreferenceId: ""),
+        'Starting');
   });
 }

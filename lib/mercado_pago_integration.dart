@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MercadoPagoIntegration {
-  static const MethodChannel _channel = const MethodChannel('mercado_pago_integration');
+  static const MethodChannel _channel =
+      const MethodChannel('mercado_pago_integration');
 
   static Future<dynamic> startCheckout({
     @required String publicKey,
