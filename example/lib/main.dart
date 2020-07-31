@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 
+final Map<String, Object> preference = {
+  'items': [
+    {
+      'title': 'Test Product',
+      'description': 'Description',
+      'quantity': 3,
+      'currency_id': 'ARS',
+      'unit_price': 1500,
+    }
+  ],
+  'payer': {'name': 'Buyer G.', 'email': 'test@gmail.com'},
+};
 void main() {
   runApp(MyApp());
 }
@@ -28,9 +40,10 @@ class _MyAppState extends State<MyApp> {
             onPressed: () async {
               String platformVersion =
                   await MercadoPagoIntegration.startCheckout(
-                      publicKey: "TEST-6e834519-997d-4a19-893e-30b6640ac335",
-                      checkoutPreferenceId:
-                          "582487861-d0e6d475-4b97-4ed8-a629-a5d2529ea46f");
+                publicKey: "[Your_Mercado_Pago_Public_Key]",
+                preference: preference,
+                accessToken: "[Your_Mercado_Pago_Access_Token]",
+              );
               debugPrint('RESULTADO$platformVersion');
             },
             child: Text('Test Integration'),

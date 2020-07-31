@@ -18,3 +18,10 @@
 
 - Documentation updated
 - Test Fixed
+
+## v0.0.4
+
+🚀 Pre Release - 0.0.4 🚀
+
+- Integrated mercado_pago_sdk
+- Create the checkout preference id.

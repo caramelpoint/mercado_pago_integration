@@ -4,12 +4,12 @@
 
 ## 🌟 Features
 
-- [x] MercadoPago's sdk integrated, in order to suppor [Mobile Checkout](https://www.mercadopago.com.ar/developers/es/guides/payments/mobile-checkout/introduction/)
-- [x] Easy to install
-- [x] Easy to integrate
-- [x] PCI compliance
-- [x] Android Support
-- [x] IOS Support
+- MercadoPago's sdk integrated, in order to suppor [Mobile Checkout](https://www.mercadopago.com.ar/developers/es/guides/payments/mobile-checkout/introduction/)
+- Easy to install
+- Easy to integrate
+- PCI compliance
+- Android Support
+- IOS Support
 
 ## 📲 How to Install
 
@@ -17,7 +17,7 @@ To use this plugin, add `mercado_pago_integration` as a dependency in your pubsp
 
 ## 🐒 How to use
 
-Only **3** steps needed to create a basic checkout using `mercado_pago_integration`:
+Only **4** steps needed to create a basic checkout using `mercado_pago_integration`:
 
 ### 1 - Import into project
 
@@ -25,15 +25,37 @@ Only **3** steps needed to create a basic checkout using `mercado_pago_integrati
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 ```
 
-### 2 - Set your  `PublicKey`  and  `PreferenceId`
+### 2 - Set your  `PublicKey`  and  `AccessToken`
 
-- In order to start a new mobile checkout you need to have a [Public_Key](https://www.mercadopago.com.ar/developers/es/guides/faqs/credentials/)
-- Besides, you need to create a `CheckoutPreferenceId` usign the [Official documentation](https://www.mercadopago.com.co/developers/es/guides/payments/mobile-checkout/receive-payments/) or you can use this [Package](https://pub.dev/packages/mercadopago_sdk) from the comunity
+In order to start a new mobile checkout you need to have a [Public_Key & AccessToken](https://www.mercadopago.com.ar/developers/es/guides/faqs/credentials/)
+  
+### 3 - Create your checkout preference configuration
 
-### 3 - Start Mobile Checkout
+See the example below, if you want more information, [here](https://www.mercadopago.com.ar/developers/es/guides/payments/web-payment-checkout/integration/#editor_1596138256) is the official documentation.
 
 ```dart
-MercadoPagoIntegration.startCheckout(publicKey: "",checkoutPreferenceId: "");
+final Map<String, Object> preferenceMap = {
+  'items': [
+    {
+      'title': 'Test Product',
+      'description': 'Description',
+      'quantity': 3,
+      'currency_id': 'ARS',
+      'unit_price': 1500,
+    }
+  ],
+  'payer': {'name': 'Buyer G.', 'email': 'test@gmail.com'},
+};
+```
+
+### 4 - Start Mobile Checkout
+
+```dart
+MercadoPagoIntegration.startCheckout(
+    publicKey: "[Your_Mercado_Pago_Public_Key]",
+    preference: preferenceMap,
+    accessToken: "[Your_Mercado_Pago_Access_Token]",
+);
 ```
 
 ### IOS Integration
@@ -85,7 +107,7 @@ This project include an example project using Mercado Pago Integration, checkout
 
 ## 👨🏻‍💻 Author
 
-### [Caramel Point](http://caramel-website.s3-website-us-east-1.amazonaws.com/)
+Caramel Point
 
 ## 👮🏻 License
 
