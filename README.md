@@ -4,7 +4,7 @@
 
 ## 🌟 Features
 
-- MercadoPago's sdk integrated, in order to suppor [Mobile Checkout](https://www.mercadopago.com.ar/developers/es/guides/payments/mobile-checkout/introduction/)
+- MercadoPago's SDK integrated, supporting [Mobile Checkout](https://www.mercadopago.com.ar/developers/es/guides/payments/mobile-checkout/introduction/)
 - Easy to install
 - Easy to integrate
 - PCI compliance
@@ -19,7 +19,7 @@ To use this plugin, add `mercado_pago_integration` as a dependency in your pubsp
 
 Only **4** steps needed to create a basic checkout using `mercado_pago_integration`:
 
-### 1 - Import into project
+### 1 - Import into the project
 
 ```dart
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
@@ -27,7 +27,7 @@ import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 
 ### 2 - Set your  `PublicKey`  and  `AccessToken`
 
-In order to start a new mobile checkout you need to have a [Public_Key & AccessToken](https://www.mercadopago.com.ar/developers/es/guides/faqs/credentials/)
+In order to start a new mobile checkout, you need to have a [Public_Key & AccessToken](https://www.mercadopago.com.ar/developers/es/guides/faqs/credentials/)
   
 ### 3 - Create your checkout preference configuration
 
@@ -98,12 +98,12 @@ To Be Defined
 
 ### 📋 Supported OS & SDK Versions
 
-- iOS 10.0+
+- iOS 10.0 
 - Addroid minSdk 19
 
 ### 🔮 Project Example
 
-This project include an example project using Mercado Pago Integration, checkout `example` folder. In case you need support contact the Caramel Point Developers Site.
+This project includes an example project using Mercado Pago Integration, checkout `example` folder. In case you need support contact the Caramel Point Developers Site.
 
 ## 👨🏻‍💻 Author
 
