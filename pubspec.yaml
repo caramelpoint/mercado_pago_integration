@@ -2,8 +2,9 @@ name: mercado_pago_integration
 description: >-
   MercadoPago Mobile Checkout Integration for android and ios
 
+
 homepage: https://github.com/caramelpoint/mercado_pago_integration
-version: 0.0.1
+version: 0.0.2
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
