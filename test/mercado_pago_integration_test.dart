@@ -9,7 +9,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return 'Starting';
     });
   });
 
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await MercadoPagoIntegration.platformVersion, '42');
+    expect(await MercadoPagoIntegration.startCheckout(publicKey: "", checkoutPreferenceId: ""), 'Starting');
   });
 }

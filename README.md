@@ -1,5 +1,7 @@
 # MercadoPago Mobile Checkout Integration
 
+![Screenshot iOS](https://caramel-static-images.s3.amazonaws.com/mercado_pago.png)
+
 ## 🌟 Features
 
 - [x] MercadoPago's sdk integrated, in order to suppor [Mobile Checkout](https://www.mercadopago.com.ar/developers/es/guides/payments/mobile-checkout/introduction/)
@@ -23,7 +25,7 @@ Only **3** steps needed to create a basic checkout using `mercado_pago_integrati
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 ```
 
-### 2 - Set your  `PublicKey`  and  `PreferenceId` 
+### 2 - Set your  `PublicKey`  and  `PreferenceId`
 
 - In order to start a new mobile checkout you need to have a [Public_Key](https://www.mercadopago.com.ar/developers/es/guides/faqs/credentials/)
 - Besides, you need to create a `CheckoutPreferenceId` usign the [Official documentation](https://www.mercadopago.com.co/developers/es/guides/payments/mobile-checkout/receive-payments/) or you can use this [Package](https://pub.dev/packages/mercadopago_sdk) from the comunity
@@ -31,9 +33,83 @@ import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 ### 3 - Start Mobile Checkout
 
 ```dart
-    MercadoPagoIntegration.startCheckout(publicKey: "",checkoutPreferenceId: "");
+MercadoPagoIntegration.startCheckout(publicKey: "",checkoutPreferenceId: "");
+```
+
+### IOS Integration
+
+#### 1 - Update `Podfile`
+
+```swift
+platform :ios, '10.0'
+```
+
+#### 2 - Update `AppDelegate.swift`
+
+```swift
+import UIKit
+import Flutter
+
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+
+    var navigationController: UINavigationController?;
+
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        GeneratedPluginRegistrant.register(with: self)
+        let flutterViewController: FlutterViewController = window?.rootViewController as! FlutterViewController
+        self.navigationController = UINavigationController(rootViewController: flutterViewController);
+        self.window = UIWindow(frame: UIScreen.main.bounds);
+        self.window.rootViewController = self.navigationController;
+        self.window.makeKeyAndVisible();
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+}
 ```
 
 #### Responses
 
 To Be Defined
+
+### 📋 Supported OS & SDK Versions
+
+- iOS 10.0+
+- Addroid minSdk 19
+
+### 🔮 Project Example
+
+This project include an example project using Mercado Pago Integration, checkout `example` folder. In case you need support contact the Caramel Point Developers Site.
+
+## 👨🏻‍💻 Author
+
+### [Caramel Point](http://caramel-website.s3-website-us-east-1.amazonaws.com/)
+
+## 👮🏻 License
+
+``` txt
+
+MIT License
+
+Copyright (c) CaramelPoint Inc
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
