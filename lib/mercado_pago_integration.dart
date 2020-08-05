@@ -1,8 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mercadopago_sdk/mercadopago_sdk.dart';
+
+import 'core/failures.dart';
+import 'models/payment.dart';
+import 'models/result.dart';
 
 MPRestClient _restClient = MPRestClient();
 
@@ -10,7 +16,7 @@ class MercadoPagoIntegration {
   static const MethodChannel _channel =
       const MethodChannel('mercado_pago_integration');
 
-  static Future<dynamic> startCheckout({
+  static Future<Either<Failure, Payment>> startCheckout({
     @required String publicKey,
     @required Map<String, dynamic> preference,
     @required String accessToken,
@@ -25,14 +31,23 @@ class MercadoPagoIntegration {
           'publicKey': publicKey,
           'checkoutPreferenceId': checkoutPreferenceId,
         });
-        debugPrint('RESULTADO $mpResult');
+        Result result;
+        try {
+          result =
+              Result.fromJson(jsonDecode(mpResult) as Map<String, dynamic>);
+          if (result.error != null && result.error.isNotEmpty) {
+            return Left(UserCanceledFailure(message: result.error));
+          } else {
+            return Right(result.payment);
+          }
+        } catch (er) {
+          return Left(UserCanceledFailure(message: result.error));
+        }
       } else {
-        // ignore: todo
-        //TODO (todo): handle error
+        return Left(CreatePreferenceFailure(message: response['error']));
       }
     } catch (e) {
-      // ignore: todo
-      //TODO (todo): handle error
+      return Left(CreatePreferenceFailure(message: e.error));
     }
   }
 

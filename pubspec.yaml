@@ -1,10 +1,10 @@
 name: mercado_pago_integration
 description: >-
-  MercadoPago Mobile Checkout Integration for android and ios. Easy to install, Easy to integrate, PCI compliance, Android Support, IOS Support. This project includes an example project using Mercado Pago Integration, checkout example folder. In case you need support contact the Caramel Point Developers Site.
+  MercadoPago Mobile Checkout Integration for android and ios. Easy to install, Easy to integrate, Android Support, IOS Support.
 
 
 homepage: https://github.com/caramelpoint/mercado_pago_integration
-version: 0.0.5
+version: 1.0.1
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
@@ -12,6 +12,9 @@ environment:
 
 dependencies:
   mercadopago_sdk: ^1.1.3
+  intl: ^0.16.1
+  dartz: ^0.9.1
+  equatable: ^1.2.3
   flutter:
     sdk: flutter
 

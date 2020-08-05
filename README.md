@@ -51,10 +51,14 @@ final Map<String, Object> preferenceMap = {
 ### 4 - Start Mobile Checkout
 
 ```dart
-MercadoPagoIntegration.startCheckout(
-    publicKey: "[Your_Mercado_Pago_Public_Key]",
-    preference: preferenceMap,
-    accessToken: "[Your_Mercado_Pago_Access_Token]",
+(await MercadoPagoIntegration.startCheckout(
+    publicKey: "PUBLIC_KEY",
+    preference: preference,
+    accessToken: "ACCESS_TOKEN",
+  )
+).fold(
+  (Failure failure) => debugPrint('Failure => ${failure.message}'),
+  (Payment payment) => debugPrint('Payment => ${payment.id}')
 );
 ```
 
@@ -98,7 +102,7 @@ To Be Defined
 
 ### 📋 Supported OS & SDK Versions
 
-- iOS 10.0 
+- iOS 10.0
 - Addroid minSdk 19
 
 ### 🔮 Project Example

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mercado_pago_integration/core/failures.dart';
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
+import 'package:mercado_pago_integration/models/payment.dart';
 
 final Map<String, Object> preference = {
   'items': [
@@ -38,13 +40,16 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: RaisedButton(
             onPressed: () async {
-              String platformVersion =
-                  await MercadoPagoIntegration.startCheckout(
-                publicKey: "[Your_Mercado_Pago_Public_Key]",
+              (await MercadoPagoIntegration.startCheckout(
+                publicKey: "PUBLIC_KEY",
                 preference: preference,
-                accessToken: "[Your_Mercado_Pago_Access_Token]",
-              );
-              debugPrint('RESULTADO$platformVersion');
+                accessToken: "ACCESS_TOKEN",
+              ))
+                  .fold((Failure failure) {
+                debugPrint('Failure => ${failure.message}');
+              }, (Payment payment) {
+                debugPrint('Payment => ${payment.id}');
+              });
             },
             child: Text('Test Integration'),
           ),

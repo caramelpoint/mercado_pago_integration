@@ -1,11 +1,17 @@
 # Mercado Pago Integration versions
 
+## v1.0.1
+
+🚀 Release - 1.0.1 🚀
+
+- Add Dartz to handle failures and success events
+- Release Ios and Android integration
+
 ## v0.0.5
 
 🚀 Pre Release - 0.0.4 🚀
 
-- Integrated mercado_pago_sdk
-- Create the checkout preference id.
+- Update documentation
 
 ## v0.0.4
 

@@ -42,18 +42,30 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
     
     
     public func finishCheckout() -> ((PXResult?) -> Void)? {
-        let mapValues:NSMutableDictionary = NSMutableDictionary()
-        mapValues.setValue("status", forKey: "status")
-        mapValues.setValue("paymentId", forKey:"paymentId")
-        mapValues.setValue("statusDetail", forKey: "statusDetail")
-        let jsonData = try! JSONSerialization.data(withJSONObject: mapValues)
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        self.flutterCallbackResult!(jsonString)
-        return nil
+        return ({ (_ payment: PXResult?) in
+            let mapValues:NSMutableDictionary = NSMutableDictionary()
+            let mapValuesResponse:NSMutableDictionary = NSMutableDictionary()
+            mapValues.setValue(payment?.getStatus(), forKey: "status")
+            mapValues.setValue(payment?.getPaymentId(), forKey:"paymentId")
+            mapValues.setValue(payment?.getStatusDetail(), forKey: "statusDetail")
+            let paymentData = try! JSONSerialization.data(withJSONObject: mapValues)
+            let paymentJsonString = NSString(data: paymentData, encoding: String.Encoding.utf8.rawValue)! as String
+            mapValuesResponse.setValue(paymentJsonString, forKey:"payment")
+            mapValuesResponse.setValue("200", forKey:"resultCode")
+            mapValuesResponse.setValue("", forKey:"error")
+            let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            self.flutterCallbackResult!(jsonString)
+        })
     }
     
     public func cancelCheckout() -> (() -> Void)? {
-        self.flutterCallbackResult!("cancelCheckout")
+        let mapValuesResponse:NSMutableDictionary = NSMutableDictionary()
+        mapValuesResponse.setValue("Canceled", forKey:"error")
+        mapValuesResponse.setValue("404", forKey:"resultCode")
+        let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        self.flutterCallbackResult!(jsonString)
         return nil
     }
     
@@ -61,13 +73,13 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
 
 extension FlutterViewController {
     override open func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
-         navigationController?.setNavigationBarHidden(true, animated: animated)
-     }
-
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override open func viewWillDisappear(_ animated: Bool) {
-         super.viewWillDisappear(animated)
-         navigationController?.setNavigationBarHidden(false, animated: animated)
-     }
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
 
