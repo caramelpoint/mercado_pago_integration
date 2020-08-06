@@ -1,5 +1,11 @@
 # Mercado Pago Integration versions
 
+## v1.0.2
+
+🚀 Release - 1.0.2 🚀
+
+- Handling responses
+
 ## v1.0.1
 
 🚀 Release - 1.0.1 🚀
