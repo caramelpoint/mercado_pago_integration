@@ -22,9 +22,12 @@ class MercadoPagoIntegration {
     @required String accessToken,
   }) async {
     try {
+      assert(publicKey != null);
+      assert(accessToken != null);
+      assert(preference != null);
       Map<String, dynamic> response =
           await _createNewPreference(preference, accessToken);
-      if (response != null) {
+      if (response != null && response['status'] == 201) {
         final String checkoutPreferenceId =
             response['response']['id'].toString();
         final String mpResult = await _channel.invokeMethod('startCheckout', {
@@ -41,13 +44,15 @@ class MercadoPagoIntegration {
             return Right(result.payment);
           }
         } catch (er) {
-          return Left(UserCanceledFailure(message: result.error));
+          return Left(UserCanceledFailure(message: er.error));
         }
       } else {
-        return Left(CreatePreferenceFailure(message: response['error']));
+        return Left(CreatePreferenceFailure(
+            message: 'Wrong Preferences, please review it.'));
       }
     } catch (e) {
-      return Left(CreatePreferenceFailure(message: e.error));
+      return Left(
+          CreatePreferenceFailure(message: '${e?.code} -> ${e?.message}'));
     }
   }
 

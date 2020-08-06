@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../utils/json_utils.dart';
 import 'payment.dart';
 
@@ -17,7 +19,11 @@ class Result {
       resultCode: json['resultCode'] as String,
       payment: json['payment'] == null
           ? null
-          : Payment.fromJson(JsonUtils.parseJson(json['payment'])),
+          : Payment.fromJson(
+              Platform.isIOS
+                  ? JsonUtils.parseJson(json['payment'])
+                  : json['payment'],
+            ),
       error: json['error'] == null ? null : json['error'] as String,
     );
   }

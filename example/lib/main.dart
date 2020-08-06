@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                   .fold((Failure failure) {
                 debugPrint('Failure => ${failure.message}');
               }, (Payment payment) {
-                debugPrint('Payment => ${payment.id}');
+                debugPrint('Payment => ${payment.paymentId}');
               });
             },
             child: Text('Test Integration'),

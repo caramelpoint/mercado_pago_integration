@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../utils/date_utils.dart';
 
 class Payment {
@@ -6,7 +8,7 @@ class Payment {
     this.couponAmount,
     this.currencyId,
     this.dateCreated,
-    this.id,
+    this.paymentId,
     this.operationType,
     this.paymentMethodId,
     this.paymentTypeId,
@@ -17,7 +19,7 @@ class Payment {
     this.dateApproved,
   });
 
-  final int id;
+  final int paymentId;
   final double collectorId;
   final double couponAmount;
   final double transactionAmount;
@@ -33,7 +35,9 @@ class Payment {
 
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      id: (json['id'] as num)?.toInt(),
+      paymentId: Platform.isIOS
+          ? (json['paymentId'] as num)?.toInt()
+          : (json['id'] as num)?.toInt(),
       collectorId: json['collectorId'] == null
           ? null
           : (json['collectorId'] as num)?.toDouble(),
@@ -73,7 +77,7 @@ class Payment {
 
   Map<String, dynamic> paymentToJson(Payment instance) {
     final val = <String, dynamic>{
-      'id': instance.id,
+      'id': instance.paymentId,
     };
 
     void writeNotNull(String key, dynamic value) {
