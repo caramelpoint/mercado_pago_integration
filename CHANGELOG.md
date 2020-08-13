@@ -1,5 +1,11 @@
 # Mercado Pago Integration versions
 
+## v1.0.4
+
+🚀 Release - 1.0.4 🚀
+
+- Fixed return to app on IOS issue.
+
 ## v1.0.3
 
 🚀 Release - 1.0.3 🚀

@@ -6,6 +6,7 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
 {
     private var checkout: MercadoPagoCheckout?
     var flutterCallbackResult: FlutterResult? = nil
+    var rootViewController: UIViewController? = nil
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "mercado_pago_integration", binaryMessenger: registrar.messenger())
@@ -29,13 +30,13 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
         // 2) Create Checkout reference
         checkout = MercadoPagoCheckout(builder: builder)
         // 3) Start with your navigation controller.
-        let rootViewController:UIViewController! = UIApplication.shared.keyWindow?.rootViewController
+        rootViewController = UIApplication.shared.keyWindow?.rootViewController
         
         if (rootViewController is UINavigationController) {
             checkout?.start(navigationController: rootViewController as! UINavigationController, lifeCycleProtocol: self)
         }
         else {
-            let navigationController:UINavigationController! = UINavigationController(rootViewController:rootViewController)
+            let navigationController:UINavigationController! = UINavigationController(rootViewController:rootViewController!)
             checkout?.start(navigationController: navigationController, lifeCycleProtocol: self)
         }
     }
@@ -56,6 +57,7 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
             let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
             let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
             self.flutterCallbackResult!(jsonString)
+            (self.rootViewController as! UINavigationController).popToRootViewController(animated: true)
         })
     }
     

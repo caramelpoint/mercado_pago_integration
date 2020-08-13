@@ -19,7 +19,7 @@ class Payment {
     this.dateApproved,
   });
 
-  final int paymentId;
+  final String paymentId;
   final double collectorId;
   final double couponAmount;
   final double transactionAmount;
@@ -35,41 +35,20 @@ class Payment {
 
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      paymentId: Platform.isIOS
-          ? (json['paymentId'] as num)?.toInt()
-          : (json['id'] as num)?.toInt(),
-      collectorId: json['collectorId'] == null
-          ? null
-          : (json['collectorId'] as num)?.toDouble(),
-      couponAmount: json['couponAmount'] == null
-          ? null
-          : (json['couponAmount'] as num)?.toDouble(),
-      transactionAmount: json['transactionAmount'] == null
-          ? null
-          : (json['transactionAmount'] as num)?.toDouble(),
-      transactionAmountRefunded: json['transactionAmountRefunded'] == null
-          ? null
-          : (json['transactionAmountRefunded'] as num)?.toDouble(),
-      currencyId:
-          json['currencyId'] == null ? null : json['currencyId'] as String,
-      operationType: json['operationType'] == null
-          ? null
-          : json['operationType'] as String,
-      paymentMethodId: json['paymentMethodId'] == null
-          ? null
-          : json['paymentMethodId'] as String,
-      paymentTypeId: json['paymentTypeId'] == null
-          ? null
-          : json['paymentTypeId'] as String,
-      statusDetail:
-          json['statusDetail'] == null ? null : json['statusDetail'] as String,
+      paymentId: Platform.isIOS ? json['paymentId'] : json['id'],
+      collectorId: json['collectorId'] == null ? null : (json['collectorId'] as num)?.toDouble(),
+      couponAmount: json['couponAmount'] == null ? null : (json['couponAmount'] as num)?.toDouble(),
+      transactionAmount: json['transactionAmount'] == null ? null : (json['transactionAmount'] as num)?.toDouble(),
+      transactionAmountRefunded:
+          json['transactionAmountRefunded'] == null ? null : (json['transactionAmountRefunded'] as num)?.toDouble(),
+      currencyId: json['currencyId'] == null ? null : json['currencyId'] as String,
+      operationType: json['operationType'] == null ? null : json['operationType'] as String,
+      paymentMethodId: json['paymentMethodId'] == null ? null : json['paymentMethodId'] as String,
+      paymentTypeId: json['paymentTypeId'] == null ? null : json['paymentTypeId'] as String,
+      statusDetail: json['statusDetail'] == null ? null : json['statusDetail'] as String,
       status: json['status'] == null ? null : json['status'] as String,
-      dateCreated: json['dateCreated'] == null
-          ? null
-          : DateUtils.parseDate(json['dateCreated'] as String),
-      dateApproved: json['dateApproved'] == null
-          ? null
-          : DateUtils.parseDate(json['dateApproved'] as String),
+      dateCreated: json['dateCreated'] == null ? null : DateUtils.parseDate(json['dateCreated'] as String),
+      dateApproved: json['dateApproved'] == null ? null : DateUtils.parseDate(json['dateApproved'] as String),
     );
   }
 
@@ -89,8 +68,7 @@ class Payment {
     writeNotNull('collectorId', instance.collectorId);
     writeNotNull('couponAmount', instance.couponAmount);
     writeNotNull('transactionAmount', instance.transactionAmount);
-    writeNotNull(
-        'transactionAmountRefunded', instance.transactionAmountRefunded);
+    writeNotNull('transactionAmountRefunded', instance.transactionAmountRefunded);
     writeNotNull('currencyId', instance.currencyId);
     writeNotNull('operationType', instance.operationType);
     writeNotNull('paymentMethodId', instance.paymentMethodId);
