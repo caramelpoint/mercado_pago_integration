@@ -1,5 +1,11 @@
 # Mercado Pago Integration versions
 
+## v1.0.5
+
+🚀 Release - 1.0.5 🚀
+
+- Fixed parse response on Android.
+
 ## v1.0.4
 
 🚀 Release - 1.0.4 🚀

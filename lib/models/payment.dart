@@ -35,7 +35,7 @@ class Payment {
 
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      paymentId: Platform.isIOS ? json['paymentId'] : json['id'],
+      paymentId: Platform.isIOS ? json['paymentId'] : json['id'].toString(),
       collectorId: json['collectorId'] == null ? null : (json['collectorId'] as num)?.toDouble(),
       couponAmount: json['couponAmount'] == null ? null : (json['couponAmount'] as num)?.toDouble(),
       transactionAmount: json['transactionAmount'] == null ? null : (json['transactionAmount'] as num)?.toDouble(),
