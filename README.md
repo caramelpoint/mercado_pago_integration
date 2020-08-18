@@ -85,18 +85,60 @@ import Flutter
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        GeneratedPluginRegistrant.register(with: self)
         let flutterViewController: FlutterViewController = window?.rootViewController as! FlutterViewController
-        self.navigationController = UINavigationController(rootViewController: flutterViewController);
-        self.window = UIWindow(frame: UIScreen.main.bounds);
-        self.window.rootViewController = self.navigationController;
-        self.window.makeKeyAndVisible();
+        GeneratedPluginRegistrant.register(with: self)
+        self.navigationController = UINavigationController(rootViewController: flutterViewController)
+        self.navigationController?.isNavigationBarHidden = true
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = self.navigationController
+        self.window?.makeKeyAndVisible()
+
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }
+
+class CustomFlutterViewController:FlutterViewController {
+  
+  override open func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      self.navigationController?.isNavigationBarHidden = true
+  }
+  
+  override open func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      self.navigationController?.isNavigationBarHidden = false
+  }
+}
+
+```
+
+#### 3 - Update `Main.storyboard` using `CustomFlutterViewController` instead of `FlutterViewController`
+
+```dart
+  customClass="CustomFlutterViewController" customModule="Runner" customModuleProvider="target"
 ```
 
 #### Responses
+
+```dart
+class {
+  Payment({
+    this.collectorId,
+    this.couponAmount,
+    this.currencyId,
+    this.dateCreated,
+    this.paymentId,
+    this.operationType,
+    this.paymentMethodId,
+    this.paymentTypeId,
+    this.status,
+    this.statusDetail,
+    this.transactionAmount,
+    this.transactionAmountRefunded,
+    this.dateApproved,
+  });
+}
+```
 
 To Be Defined
 

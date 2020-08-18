@@ -1,5 +1,12 @@
 # Mercado Pago Integration versions
 
+## v1.1.6
+
+🚀 Release - 1.1.6 🚀
+
+- Fixed IOS return to flutter app issue.
+- Update Readme
+
 ## v1.0.5
 
 🚀 Release - 1.0.5 🚀

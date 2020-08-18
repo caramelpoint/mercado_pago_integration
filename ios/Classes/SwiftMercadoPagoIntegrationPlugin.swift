@@ -57,31 +57,31 @@ public class SwiftMercadoPagoIntegrationPlugin: NSObject, FlutterPlugin, PXLifeC
             let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
             let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
             self.flutterCallbackResult!(jsonString)
-            (self.rootViewController as! UINavigationController).popToRootViewController(animated: true)
+            if (self.rootViewController is UINavigationController) {
+                (self.rootViewController as! UINavigationController).popToRootViewController(animated: false)
+            }
+            else {
+                let navigationController:UINavigationController! = UINavigationController(rootViewController:self.rootViewController!)
+                navigationController.popToRootViewController(animated: false)
+            }
         })
     }
     
     public func cancelCheckout() -> (() -> Void)? {
-        let mapValuesResponse:NSMutableDictionary = NSMutableDictionary()
-        mapValuesResponse.setValue("Canceled", forKey:"error")
-        mapValuesResponse.setValue("404", forKey:"resultCode")
-        let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        self.flutterCallbackResult!(jsonString)
-        return nil
-    }
-    
-}
-
-extension FlutterViewController {
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override open func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        return {
+            let mapValuesResponse:NSMutableDictionary = NSMutableDictionary()
+            mapValuesResponse.setValue("Canceled", forKey:"error")
+            mapValuesResponse.setValue("404", forKey:"resultCode")
+            let jsonData = try! JSONSerialization.data(withJSONObject: mapValuesResponse)
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            self.flutterCallbackResult!(jsonString)
+            if (self.rootViewController is UINavigationController) {
+                (self.rootViewController as! UINavigationController).popToRootViewController(animated: true)
+            }
+            else {
+                let navigationController:UINavigationController! = UINavigationController(rootViewController:self.rootViewController!)
+                navigationController.popToRootViewController(animated: true)
+            }
+        }
     }
 }
-
