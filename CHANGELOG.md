@@ -1,5 +1,11 @@
 # Mercado Pago Integration versions
 
+## v1.1.7
+
+🚀 Release - 1.1.7 🚀
+
+- Support Lifecycle activity methods on Android.
+
 ## v1.1.6
 
 🚀 Release - 1.1.6 🚀
