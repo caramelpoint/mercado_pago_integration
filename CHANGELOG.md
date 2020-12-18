@@ -1,5 +1,11 @@
 # Mercado Pago Integration versions
 
+## v1.1.8
+
+🚀 Release - 1.1.8 🚀
+
+- Fixed error message issue.
+
 ## v1.1.7
 
 🚀 Release - 1.1.7 🚀

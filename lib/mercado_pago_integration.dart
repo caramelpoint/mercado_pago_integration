@@ -13,8 +13,7 @@ import 'models/result.dart';
 MPRestClient _restClient = MPRestClient();
 
 class MercadoPagoIntegration {
-  static const MethodChannel _channel =
-      const MethodChannel('mercado_pago_integration');
+  static const MethodChannel _channel = const MethodChannel('mercado_pago_integration');
 
   static Future<Either<Failure, Payment>> startCheckout({
     @required String publicKey,
@@ -25,34 +24,30 @@ class MercadoPagoIntegration {
       assert(publicKey != null);
       assert(accessToken != null);
       assert(preference != null);
-      Map<String, dynamic> response =
-          await _createNewPreference(preference, accessToken);
+      Map<String, dynamic> response = await _createNewPreference(preference, accessToken);
       if (response != null && response['status'] == 201) {
-        final String checkoutPreferenceId =
-            response['response']['id'].toString();
+        final String checkoutPreferenceId = response['response']['id'].toString();
         final String mpResult = await _channel.invokeMethod('startCheckout', {
           'publicKey': publicKey,
           'checkoutPreferenceId': checkoutPreferenceId,
         });
         Result result;
         try {
-          result =
-              Result.fromJson(jsonDecode(mpResult) as Map<String, dynamic>);
+          result = Result.fromJson(jsonDecode(mpResult) as Map<String, dynamic>);
           if (result.error != null && result.error.isNotEmpty) {
             return Left(UserCanceledFailure(message: result.error));
           } else {
             return Right(result.payment);
           }
         } catch (er) {
-          return Left(UserCanceledFailure(message: er.error));
+          debugPrint(er);
+          return Left(UserCanceledFailure(message: 'Wrong Payment information, please review it'));
         }
       } else {
-        return Left(CreatePreferenceFailure(
-            message: 'Wrong Preferences, please review it.'));
+        return Left(CreatePreferenceFailure(message: 'Wrong Preferences, please review it.'));
       }
     } catch (e) {
-      return Left(
-          CreatePreferenceFailure(message: '${e?.code} -> ${e?.message}'));
+      return Left(CreatePreferenceFailure(message: '${e?.code} -> ${e?.message}'));
     }
   }
 
